@@ -10,7 +10,7 @@ extension Lattice {
     }
 
     func extractProps() -> [SiteProps] {
-        return sitePropsBM.values()
+        sitePropsBM.values()
     }
 
     func extractTracers() -> TracerCoordData {
@@ -195,6 +195,5 @@ final class LatticeTests: XCTestCase {
         lbm.stepOneFrame(stepsPerFrame: 30, moveTracers: true)
         let tracerCoordsF = lbm.extractTracers()
         XCTAssertNotEqual(tracerCoords0, tracerCoordsF)
-        
     }
 }

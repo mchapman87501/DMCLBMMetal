@@ -1,4 +1,4 @@
-name: Swift Test With Coverage
+name: Build
 
 on: [push]
 

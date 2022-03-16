@@ -66,7 +66,6 @@ public class Lattice {
         sitePropsBM = MetalBuffMgr<SiteProps>(device: dev)
         tracerBM = MetalBuffMgr<TracerCoord>(device: dev)
 
-
         // Expect to receive one value for each site, not for each field.
         let numSites = numFields / fieldsPerSite
 

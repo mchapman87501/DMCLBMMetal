@@ -47,7 +47,6 @@ class WorldWriterTests: XCTestCase {
         let lattice = newLattice(width: width, height: height, shape: foil.shape)
         let efc = EdgeForceCalc(lattice: lattice, shape: foil.shape)
 
-
         let movieWidth = 40 * width
         let movieHeight = 40 * height
         guard

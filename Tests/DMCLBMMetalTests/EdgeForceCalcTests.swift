@@ -8,18 +8,18 @@ final class EdgePressureCalcTests: XCTestCase {
         let numSites = width * height
         
         let singleSite: [Float] = [
-            4.0/9.0,
-            1.0/9.0,
-            1.0/36.0,
-            1.0/9.0,
-            1.0/36.0,
-            1.0/9.0,
-            1.0/36.0,
-            1.0/9.0,
-            1.0/36.0
+            4.0 / 9.0,
+            1.0 / 9.0,
+            1.0 / 36.0,
+            1.0 / 9.0,
+            1.0 / 36.0,
+            1.0 / 9.0,
+            1.0 / 36.0,
+            1.0 / 9.0,
+            1.0 / 36.0
         ]
 
-        let fields: [Float] = (0..<numSites).flatMap{_ in singleSite}
+        let fields: [Float] = (0..<numSites).flatMap{ _ in singleSite }
         let foil = AirFoil(
             x: Double(width) / 4.0, y: Double(height) / 2.0, width: Double(width) / 3.0,
             alphaRad: 4.0 * .pi / 180.0)

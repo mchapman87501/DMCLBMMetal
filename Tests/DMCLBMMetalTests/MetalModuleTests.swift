@@ -6,7 +6,7 @@ final class MetalModuleTests: XCTestCase {
         let module = try MetalModule()
         
         func getPS() throws {
-            let _ = try module.pipelineState(name: "no_such_function")
+            _ = try module.pipelineState(name: "no_such_function")
         }
 
         XCTAssertThrowsError(try getPS())
