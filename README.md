@@ -26,6 +26,10 @@ This isn't the first time I've tried to get up to speed with GPUs.  Most of my p
 
 This time the results are much more satisfying.  On a 2021 MacBook Pro with an M1 Pro 10-CPU/16-GPU processor, this implementation runs 4 to 5 times faster than the [DMCLatticeBoltzmann](https://github.com/mchapman87501/DMCLatticeBoltzmann.git) from which it derives.
 
+## Building
+
+I'm not yet able to convince `swift build` to compile the Metal source files into a `default.metallib` library.  As a workaround I'm using [CMake](https://cmake.org/) to drive compilation.  The `clean_test.sh` script shows one way to run the compilation.
+
 ## Sources
 
 This code owes a lot to Stack Overflow.  For example:
