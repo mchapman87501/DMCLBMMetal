@@ -103,10 +103,6 @@ stream(
     const uint dest_site_index = (index.y * lattice_size.width) + index.x;
     const uint dest_field_index = dest_site_index * fields_per_site + index.z;
 
-    // Notes: "-" is used because of backing out from destination to src.
-    // Metal modulus operator result is undefined if either operand is < 0.
-    // Hence this weirdness, to ensure src_x in 0..<width without
-    // conditional logic.
     const int width = (int)lattice_size.width;
     const uint src_x = (uint)((width + ((int)index.x - idvx[index.z])) % width);
     
@@ -181,13 +177,6 @@ calc_edge_force(
     // I would like to unnroll this: let each calc_edge_force call add one value to an edge_force calc.
     // But to do that safely would require support for atomic<float>.  At time of writing,
     // Metal does not support atomic<float>
-    // rho_vals holds all densities in the lattice.
-    // all_edge_indices holds the rho_vals indices for each edge,
-    // contiguously.
-    // edge_start_indices hold the index within all_edge_indices
-    // where each edge starts.
-    // num_edge_indices holds the number of all_edge_indices entries
-    // for each edge.
     const device EdgeSitesInfo& info(edge_infos[edge_index]);
 
     float edge_sum = 0.0;

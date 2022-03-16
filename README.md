@@ -1,6 +1,6 @@
 # DMCLBMMetal
 
-![Build and test with coverage](https://github.com/mchapman87501/DMCLBMMetal/actions/workflows/swift_build_and_test_with_coverage.yml/badge.svg)
+![Build](https://github.com/mchapman87501/DMCLBMMetal/actions/workflows/swift_build_and_test_with_coverage.yml/badge.svg)
 
 This is a Swift implementation of a D2Q9 Lattice-Boltzmann fluid flow simulation.  It uses Metal to perform lattice collisions, streaming, edge force calculations, and tracer movement on a GPU; and to render depictions of the lattice state.
 

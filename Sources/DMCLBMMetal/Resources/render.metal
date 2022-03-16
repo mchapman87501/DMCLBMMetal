@@ -19,7 +19,6 @@ render_density(
 )
 {
     // Client is responsible for preserving aspect ratios.
-    // Must manually invert the y axis.
     const uint w_latt = params.lattice_size.width;
     const uint h_latt = params.lattice_size.height;
     const uint w_img = params.img_size.width;
@@ -61,10 +60,8 @@ foil_vertex_shader(
 
     result.position = float4(0.0, 0.0, 0.0, 1.0);
 
-    // Map from 0..<world_size.x to -1.0...1.0.
     const device float2& vin(vertices[index]);
     result.position.x = -1.0 + 2.0 * vin.x / world_size.x;
-    // And from 0..<world_size.y to -1.0...1.0
     result.position.y = -1.0 + 2.0 * vin.y / world_size.y;
 
     result.color = color;
@@ -98,11 +95,9 @@ tracer_vertex_shader(
 
     result.position = float4(0.0, 0.0, 0.0, 1.0);
 
-    // Map tracer coordinates from 0..<world_size.x to -1.0...1.0.
     const device TracerCoord& tracer(tracer_site_coords[tracer_index]);
     
     result.position.x = -1.0 + 2.0 * tracer.x / world_size.x;
-    // And from 0..<world_size.y to -1.0...1.0
     result.position.y = -1.0 + 2.0 * tracer.y / world_size.y;
 
     // Guesstimate a point size.
@@ -157,11 +152,6 @@ edge_force_vertex_shader(
     const device float2& vin(vertices[vertex_index]);
     
     result.position = float4(0.0, 0.0, 0.0, 1.0);
-    // TODO rotations, scaling of arrow tail...
-    // Ordinarily this would be done on CPU side, I think.
-    // I'm trying to keep all buffer data in GPU memory, hence this
-    // experiment.
-    
     const float angle = atan2(edge_normals[edge_index].y, edge_normals[edge_index].x);
     const float cosa = cos(angle);
     const float sina = sin(angle);
@@ -184,7 +174,7 @@ edge_force_vertex_shader(
 fragment float4
 edge_force_fragment_shader(
     EFRRasterData in [[stage_in]],
-    float2 point_coord [[point_coord]] // Necessary?
+    float2 point_coord [[point_coord]]
 )
 {
     return in.color;
