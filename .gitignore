@@ -1,0 +1,17 @@
+.DS_Store
+
+/.build
+/.swiftpm
+/Build
+/Packages
+
+/*.xcodeproj
+xcuserdata/
+DerivedData/
+
+/.vscode
+
+/movie.mov
+
+default.metallib
+**/*.air

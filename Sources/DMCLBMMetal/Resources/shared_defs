@@ -1,0 +1,20 @@
+#pragma once
+ 
+// Thanks to FlexMonkey for clues
+// http://flexmonkey.blogspot.com/2014/10/metal-kernel-functions-compute-shaders.html
+
+struct SizeT {
+    uint width;
+    uint height;
+};
+
+struct SiteProps {
+    float rho;
+    float ux;
+    float uy;
+};
+
+struct TracerCoord {
+    float x;
+    float y;
+};

@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DMC2D",
+        "repositoryURL": "https://github.com/mchapman87501/DMC2D.git",
+        "state": {
+          "branch": null,
+          "revision": "0c4f0779a89b90cc250301019eef220969e354eb",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "DMCMovieWriter",
+        "repositoryURL": "https://github.com/mchapman87501/DMCMovieWriter.git",
+        "state": {
+          "branch": null,
+          "revision": "c578d981aedfbf8f851ea458b1c5ede9ce25374e",
+          "version": "1.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
