@@ -1,3 +1,5 @@
+# https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
 name: Build
 
 on: [push]
@@ -5,11 +7,15 @@ on: [push]
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      CONFIG: Release
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: "3.9"
+      - name: Configure CMake
+        run: cmake -S . -B Build/$CONFIG -DCMAKE_BUILD_TYPE=$CONFIG
       - name: Build
-        run: swift build
+        run: cmake --build Build/$CONFIG --target DMCLBMMetal
