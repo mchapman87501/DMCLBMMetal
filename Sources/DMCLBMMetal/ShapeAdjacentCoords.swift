@@ -11,6 +11,7 @@ struct ShapeAdjacentCoords {
         let x: Int
         let y: Int
     }
+
     // Represents the location of a site within a lattice.
     public typealias Coord = (Int, Int)
 
@@ -28,9 +29,9 @@ struct ShapeAdjacentCoords {
 
     internal static func getAdjacentCoords(
         shape: Polygon, edge: Polygon.Segment, normal: Vector,
-        bounds: NSRect
-    ) -> [Coord] {
-        // TODO Use Bresenham's algorithm.
+        bounds: NSRect) -> [Coord]
+    {
+        // TODO: Use Bresenham's algorithm.
         let dx = edge.pf.x - edge.p0.x
         let dy = edge.pf.y - edge.p0.y
         // Step along the axis which has the larger span - avoid pixellation gaps.
@@ -44,8 +45,8 @@ struct ShapeAdjacentCoords {
 
     internal static func getAdjacentCoordsAlongY(
         shape: Polygon, edge: Polygon.Segment, normal: Vector,
-        bounds: NSRect
-    ) -> [Coord] {
+        bounds: NSRect) -> [Coord]
+    {
         let n = normal.unit() / 2.0
         let p0 = Vector(edge.p0) + n
         let pf = Vector(edge.pf) + n
@@ -78,8 +79,8 @@ struct ShapeAdjacentCoords {
 
     internal static func getAdjacentCoordsAlongX(
         shape: Polygon, edge: Polygon.Segment, normal: Vector,
-        bounds: NSRect
-    ) -> [Coord] {
+        bounds: NSRect) -> [Coord]
+    {
         let n = normal.unit() / 2.0
         let p0 = Vector(edge.p0) + n
         let pf = Vector(edge.pf) + n

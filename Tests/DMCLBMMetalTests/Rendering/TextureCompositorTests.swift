@@ -27,7 +27,7 @@ final class TextureCompositorTests: XCTestCase {
 
         // Some test: the compositor always renders over
         // a full-opacity black background, so expected alpha is always 255.
-        let expectedAlpha = UInt8(255)  // UInt8(255 * alpha + 0.5)
+        let expectedAlpha = UInt8(255) // UInt8(255 * alpha + 0.5)
         // How to know the component order?  It looks like BGRA...
         let alphaComp = 3
 

@@ -19,8 +19,8 @@ public struct WorldWriter {
         width: Int, height: Int,
         foil: AirFoil,
         writingTo: DMCMovieWriter,
-        title: String = ""
-    ) throws {
+        title: String = "") throws
+    {
         self.lattice = lattice
         self.edgeForceCalc = edgeForceCalc
         self.foil = foil
@@ -75,8 +75,8 @@ public struct WorldWriter {
     }
 
     private func addTitleFrame(
-        frameImage: NSImage, alpha: Double, duration: Double
-    ) throws {
+        frameImage: NSImage, alpha: Double, duration: Double) throws
+    {
         try autoreleasepool {
             let faded = fadedImage(srcImage: frameImage, alpha: 1.0 - alpha)
             try movieWriter.addFrame(faded, duration: duration)
@@ -93,6 +93,7 @@ public struct WorldWriter {
             return true
         }
     }
+
     private func titleFrameImage(title: String, size: NSSize, alpha: Double)
         -> NSImage
     {

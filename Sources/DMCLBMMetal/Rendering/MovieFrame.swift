@@ -12,13 +12,13 @@ public struct MovieFrame {
 
     public init(
         lattice: Lattice, foil: AirFoil, edgeForceCalc: EdgeForceCalc,
-        width: Int, height: Int, title: String
-    ) throws {
+        width: Int, height: Int, title: String) throws
+    {
         // Expedient: Assume 1:1 lattice size vs. movie frame size.
-        self.imgWidth = Double(width)
-        self.imgHeight = Double(height)
+        imgWidth = Double(width)
+        imgHeight = Double(height)
 
-        self.renderer = try FrameRenderer(
+        renderer = try FrameRenderer(
             title: title,
             width: width, height: height,
             lattice: lattice, edgeForceCalc: edgeForceCalc, foil: foil)

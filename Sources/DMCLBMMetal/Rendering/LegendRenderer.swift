@@ -39,7 +39,7 @@ class LegendRenderer {
         let mfSize = 10.0
         let measureFont = NSFont.systemFont(ofSize: mfSize)
         let measureAttrs = [
-            NSAttributedString.Key.font: measureFont
+            NSAttributedString.Key.font: measureFont,
         ]
         let refTitleSize = (title as NSString).size(
             withAttributes: measureAttrs)
@@ -55,7 +55,7 @@ class LegendRenderer {
         let titleSize = (title as String).size(withAttributes: attrs)
 
         // Create a background rect that fits the text plus some margin.
-        let marginFract = 0.05  // Margin within the background rect
+        let marginFract = 0.05 // Margin within the background rect
         let bgWidth = titleSize.width * (1.0 + 2.0 * marginFract)
         let bgHeight = titleSize.height * (1.0 + 2.0 * marginFract)
 

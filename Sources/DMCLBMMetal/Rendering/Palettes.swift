@@ -280,21 +280,21 @@ struct InfernoPalette: Palette {
 
 // swiftlint:disable indentation_width
 /*
- * Thanks to https://stackoverflow.com/a/51290462
- * RGB values generated with Python and matplotlib, using:
- *
+  * Thanks to https://stackoverflow.com/a/51290462
+  * RGB values generated with Python and matplotlib, using:
+  *
 
-from matplotlib.colors import LinearSegmentedColormap
-colors = [(0, "blue"), (0.45, "white"), (0.55, "white"), (1, "red")]
-cmap = LinearSegmentedColormap.from_list("bwwr", colors)
+ from matplotlib.colors import LinearSegmentedColormap
+ colors = [(0, "blue"), (0.45, "white"), (0.55, "white"), (1, "red")]
+ cmap = LinearSegmentedColormap.from_list("bwwr", colors)
 
-print("    let rgb = [")
-for pct in range(256):
-    r, g, b, a = cmap(pct / 255.0)
-    print(f"        [{r:.6f}, {g:.6f}, {b:.6f}],")
-print("    ]")
+ print("    let rgb = [")
+ for pct in range(256):
+     r, g, b, a = cmap(pct / 255.0)
+     print(f"        [{r:.6f}, {g:.6f}, {b:.6f}],")
+ print("    ]")
 
- */
+  */
 // swiftlint:enable indentation_width
 
 struct BWRPalette: Palette {

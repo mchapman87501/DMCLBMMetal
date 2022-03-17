@@ -2,8 +2,8 @@ import Cocoa
 import Foundation
 import MetalKit
 
-extension NSImage {
-    public static func fromTexture(texture: MTLTexture) -> NSImage {
+public extension NSImage {
+    static func fromTexture(texture: MTLTexture) -> NSImage {
         let imgSize = NSSize(width: texture.width, height: texture.height)
         if let cgImage = CGImage.fromTexture(texture: texture) {
             return NSImage(cgImage: cgImage, size: imgSize)
@@ -11,7 +11,7 @@ extension NSImage {
         return NSImage(size: imgSize)
     }
 
-    public func toTexture(device: MTLDevice) -> MTLTexture {
+    func toTexture(device: MTLDevice) -> MTLTexture {
         let imageData = tiffRepresentation!
         let source = CGImageSourceCreateWithData(imageData as CFData, nil)
             .unsafelyUnwrapped
@@ -21,11 +21,11 @@ extension NSImage {
     }
 }
 
-extension CGImage {
+public extension CGImage {
     // Many thanks to Avinash!
     // https://avinashselvam.medium.com
     // https://gist.github.com/avinashselvam/9ccdd297ce28a3363518727e50f77d11)
-    public static func fromTexture(texture tex: MTLTexture) -> CGImage? {
+    static func fromTexture(texture tex: MTLTexture) -> CGImage? {
         let numComps = 4
         let imgWidth = tex.width
         let imgHeight = tex.height
@@ -48,15 +48,15 @@ extension CGImage {
         return context?.makeImage()
     }
 
-    public func toTexture(device: MTLDevice) -> MTLTexture {
+    func toTexture(device: MTLDevice) -> MTLTexture {
         let textureLoader = MTKTextureLoader(device: device)
 
         do {
             let texture = try textureLoader.newTexture(
                 cgImage: self, options: nil)
             let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
-                pixelFormat: texture.pixelFormat, width: self.width,
-                height: self.height, mipmapped: false)
+                pixelFormat: texture.pixelFormat, width: width,
+                height: height, mipmapped: false)
             textureDescriptor.usage = [.shaderRead, .shaderWrite]
             return texture
         } catch {

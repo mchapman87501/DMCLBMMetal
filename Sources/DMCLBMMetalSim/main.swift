@@ -1,7 +1,7 @@
 import AppKit
+import DMCLBMMetal
 import DMCMovieWriter
 import Foundation
-import DMCLBMMetal
 
 func createFoil(width: Int, height: Int) -> AirFoil {
     let xFoil = 0.4 * Double(width)
@@ -12,8 +12,8 @@ func createFoil(width: Int, height: Int) -> AirFoil {
 }
 
 func installFoil(
-    foil: AirFoil, width: Int, height: Int, siteTypes: inout SiteTypeData
-) {
+    foil: AirFoil, width: Int, height: Int, siteTypes: inout SiteTypeData)
+{
     let numSites = width * height
     for index in 0..<numSites {
         let y = index / width
@@ -25,8 +25,8 @@ func installFoil(
 }
 
 func addBoundaryEdge(
-    x: Int, width: Int, height: Int, siteTypes: inout SiteTypeData
-) {
+    x: Int, width: Int, height: Int, siteTypes: inout SiteTypeData)
+{
     for y in 0..<height {
         let index = y * width + x
         siteTypes[index] = .boundary
@@ -34,8 +34,8 @@ func addBoundaryEdge(
 }
 
 func addBoundaryEdge(
-    y: Int, width: Int, height: Int, siteTypes: inout SiteTypeData
-) {
+    y: Int, width: Int, height: Int, siteTypes: inout SiteTypeData)
+{
     let rowBaseIndex = y * width
     for x in 0..<width {
         siteTypes[rowBaseIndex + x] = .boundary
@@ -69,8 +69,8 @@ func initFields(width: Int, height: Int, windSpeed: Double) -> FieldData {
     let easterly = 1.0 + 3.0 * v + 3.0 * vSqr
     let westerly = 1.0 - 3.0 * v + 3.0 * vSqr
     let wNone = 4.0 / 9.0
-    let wCardinal = 1.0 / 9.0  // North, east, west, south
-    let wOrdinal = 1.0 / 36.0  // Northeast, etc.
+    let wCardinal = 1.0 / 9.0 // North, east, west, south
+    let wOrdinal = 1.0 / 36.0 // Northeast, etc.
 
     func getRho(dir: Direction) -> Double {
         switch dir {
@@ -122,10 +122,10 @@ struct Scenario {
     func description() -> String {
         String(
             format: """
-                Temperature: %.2f
-                Viscosity: %.4f
-                Wind speed: %.2f
-                """, temperature, viscosity, windSpeed)
+            Temperature: %.2f
+            Viscosity: %.4f
+            Wind speed: %.2f
+            """, temperature, viscosity, windSpeed)
     }
 }
 
@@ -201,7 +201,7 @@ func main() {
     try! worldWriter.showTitle(scenario.description())
 
     let stepsPerFrame = 10
-    let fps = 30  // frames per second
+    let fps = 30 // frames per second
 
     let warmupSeconds = 15
     let warmupFrames = fps * warmupSeconds

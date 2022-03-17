@@ -14,8 +14,8 @@ struct RenderContext {
 
     init(
         module: MetalModule, tex: MTLTexture,
-        pipeDesc: MTLRenderPipelineDescriptor, passDesc: MTLRenderPassDescriptor
-    ) {
+        pipeDesc: MTLRenderPipelineDescriptor, passDesc: MTLRenderPassDescriptor)
+    {
         self.module = module
         self.tex = tex
 

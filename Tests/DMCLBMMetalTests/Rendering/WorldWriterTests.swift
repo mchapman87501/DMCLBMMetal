@@ -1,7 +1,7 @@
 import XCTest
 
-import DMCLBMMetal
 import DMC2D
+import DMCLBMMetal
 @testable import DMCMovieWriter
 
 class WorldWriterTests: XCTestCase {
@@ -13,11 +13,11 @@ class WorldWriterTests: XCTestCase {
             try fm.removeItem(at: movieURL)
         }
     }
-    
+
     private func newLattice(width: Int, height: Int, shape: DMC2D.Polygon) -> Lattice {
         let numSites = width * height
         let numFields = numSites * fieldsPerSite
-        
+
         let fields0 = (0..<numFields).map {
             Float($0)
         }
@@ -43,7 +43,7 @@ class WorldWriterTests: XCTestCase {
         let foil = AirFoil(
             x: Double(width) / 4.0, y: Double(height) / 2.0, width: Double(width) / 3.0,
             alphaRad: 4.0 * .pi / 180.0)
-        
+
         let lattice = newLattice(width: width, height: height, shape: foil.shape)
         let efc = EdgeForceCalc(lattice: lattice, shape: foil.shape)
 

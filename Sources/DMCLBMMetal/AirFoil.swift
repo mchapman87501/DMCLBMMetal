@@ -21,8 +21,8 @@ public struct AirFoil {
     ///   - width: total width of the foil shape
     ///   - alphaRad: angle of attack of the foil shape, in radians
     public init(
-        x left: Double, y bottom: Double, width: Double, alphaRad: Double
-    ) {
+        x left: Double, y bottom: Double, width: Double, alphaRad: Double)
+    {
         let vertexCoords: [(Double, Double)] = [
             (0.0000, 0.0000),
             (0.0092, 0.0188),
@@ -61,7 +61,7 @@ public struct AirFoil {
         let mag = xvals.max()! - xvals.min()!
         let normedCoords = vertexCoords.map {
             x, y in
-            (((x - xmin) / mag), ((y - ymin) / mag))
+            ((x - xmin) / mag, (y - ymin) / mag)
         }
 
         // Alpha = angle of attack.  Since leading edge is at the origin,
@@ -69,13 +69,13 @@ public struct AirFoil {
         let cosAlpha = cos(-alphaRad)
         let sinAlpha = sin(-alphaRad)
         let rotatedCoords = normedCoords.map { x, y in
-            ((cosAlpha * x - sinAlpha * y), (sinAlpha * x + cosAlpha * y))
+            (cosAlpha * x - sinAlpha * y, sinAlpha * x + cosAlpha * y)
         }
 
         // Scale up so airfoil has the requested width.
         let scaledCoords = rotatedCoords.map {
             x, y in
-            ((x * width + left), (y * width + bottom))
+            (x * width + left, y * width + bottom)
         }
         shape = Polygon(scaledCoords)
     }

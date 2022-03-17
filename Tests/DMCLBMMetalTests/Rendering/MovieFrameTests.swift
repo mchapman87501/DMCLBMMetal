@@ -8,14 +8,14 @@ class MovieFrameTests: XCTestCase {
         let height = 32
         let numSites = width * height
         let numFields = numSites * fieldsPerSite
-        
+
         let fields0 = (0..<numFields).map {
             Float($0)
         }
         let foil = AirFoil(
             x: Double(width) / 4.0, y: Double(height) / 2.0, width: Double(width) / 3.0,
             alphaRad: 4.0 * .pi / 180.0)
-        
+
         var siteTypes = SiteTypeData()
         for y in 0..<height {
             for x in 0..<width {

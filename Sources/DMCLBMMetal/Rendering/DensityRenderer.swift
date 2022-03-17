@@ -28,7 +28,7 @@ struct DensityRenderer {
         paramsBM = MetalBuffMgr<DensityRenderParams>(device: dev)
 
         let components = Self.getPaletteData()
-        let numColors = components.count / 4  // b, g, r, a
+        let numColors = components.count / 4 // b, g, r, a
 
         let width = UInt32(imgSize.width)
         let height = UInt32(imgSize.height)

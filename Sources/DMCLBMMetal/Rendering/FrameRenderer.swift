@@ -30,36 +30,36 @@ class FrameRenderer {
     init(
         title: String, width: Int, height: Int,
         lattice: Lattice, edgeForceCalc: EdgeForceCalc,
-        foil: AirFoil
-    ) throws {
+        foil: AirFoil) throws
+    {
         self.title = title
         // Image size:
-        self.imgWidth = width
-        self.imgHeight = height
-        self.imgSize = NSSize(width: width, height: height)
+        imgWidth = width
+        imgHeight = height
+        imgSize = NSSize(width: width, height: height)
 
         self.lattice = lattice
         self.edgeForceCalc = edgeForceCalc
 
-        self.densityRenderer = DensityRenderer(
+        densityRenderer = DensityRenderer(
             lattice: lattice, imgSize: imgSize)
-        self.foilRenderer = FoilRenderer(
+        foilRenderer = FoilRenderer(
             lattice: lattice, foilShape: foil.shape)
-        self.tracerRenderer = TracerRenderer(lattice: lattice)
-        self.edgeForceRenderer = EdgeForceRenderer(
+        tracerRenderer = TracerRenderer(lattice: lattice)
+        edgeForceRenderer = EdgeForceRenderer(
             lattice: lattice, shape: foil.shape,
             edgeForceBM: edgeForceCalc.edgeForceBM)
-        self.netForceRenderer = NetForceRenderer(
+        netForceRenderer = NetForceRenderer(
             lattice: lattice, shape: foil.shape)
-        self.legendRenderer = LegendRenderer(
-            module: lattice.module, imageSize: self.imgSize, title: title)
-        self.compositor = try TextureCompositor(
-            module: lattice.module, imageSize: self.imgSize)
+        legendRenderer = LegendRenderer(
+            module: lattice.module, imageSize: imgSize, title: title)
+        compositor = try TextureCompositor(
+            module: lattice.module, imageSize: imgSize)
 
-        self.renderTexture = Self.createRenderTexture(
+        renderTexture = Self.createRenderTexture(
             dev: lattice.module.dev, width: width,
             height: height)
-        self.aaTexture = Self.createAntialiasedTexture(
+        aaTexture = Self.createAntialiasedTexture(
             dev: lattice.module.dev, width: width,
             height: height)
     }
@@ -67,8 +67,8 @@ class FrameRenderer {
     private static let multisampleCount = 4
 
     private static func createRenderTexture(
-        dev: MTLDevice, width: Int, height: Int
-    ) -> MTLTexture {
+        dev: MTLDevice, width: Int, height: Int) -> MTLTexture
+    {
         let desc = MTLTextureDescriptor.texture2DDescriptor(
             pixelFormat: .bgra8Unorm, width: width, height: height,
             mipmapped: false)
@@ -82,8 +82,7 @@ class FrameRenderer {
     }
 
     private static func createAntialiasedTexture(
-        dev: MTLDevice, width: Int, height: Int
-    )
+        dev: MTLDevice, width: Int, height: Int)
         -> MTLTexture
     {
         let desc = MTLTextureDescriptor.texture2DDescriptor(
@@ -128,6 +127,7 @@ class FrameRenderer {
     }
 
     // MARK: - Building RenderContexts
+
     private func getTracerContext(clearTexture: Bool) -> RenderContext {
         getContext(
             vertexShader: "tracer_vertex_shader",
@@ -142,17 +142,14 @@ class FrameRenderer {
             clearTexture: clearTexture)
     }
 
-    private func getEdgeForceRenderContext(clearTexture: Bool) -> RenderContext
-    {
+    private func getEdgeForceRenderContext(clearTexture: Bool) -> RenderContext {
         getContext(
             vertexShader: "edge_force_vertex_shader",
-            fragShader: "edge_force_fragment_shader", clearTexture: clearTexture
-        )
+            fragShader: "edge_force_fragment_shader", clearTexture: clearTexture)
     }
 
     private func getContext(
-        vertexShader: String, fragShader: String, clearTexture: Bool
-    )
+        vertexShader: String, fragShader: String, clearTexture: Bool)
         -> RenderContext
     {
         let module = lattice.module
@@ -169,8 +166,8 @@ class FrameRenderer {
 
     private func getRenderPassDesc(
         renderTexture: MTLTexture, resolveTexture: MTLTexture,
-        loadAction: MTLLoadAction
-    ) -> MTLRenderPassDescriptor {
+        loadAction: MTLLoadAction) -> MTLRenderPassDescriptor
+    {
         let result = MTLRenderPassDescriptor()
 
         result.colorAttachments[0].texture = renderTexture
@@ -183,8 +180,8 @@ class FrameRenderer {
     }
 
     private func getRenderPipeDesc(
-        lib: MTLLibrary, vertexShader: String, fragShader: String
-    ) -> MTLRenderPipelineDescriptor {
+        lib: MTLLibrary, vertexShader: String, fragShader: String) -> MTLRenderPipelineDescriptor
+    {
         let result = MTLRenderPipelineDescriptor()
         result.vertexFunction = lib.makeFunction(name: vertexShader)
         result.fragmentFunction = lib.makeFunction(name: fragShader)

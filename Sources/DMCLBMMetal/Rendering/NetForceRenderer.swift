@@ -17,14 +17,14 @@ struct NetForceRenderer {
 
     init(lattice: Lattice, shape: DMC2D.Polygon) {
         self.lattice = lattice
-        self.worldSize = WorldSize(
+        worldSize = WorldSize(
             x: Float(lattice.width), y: Float(lattice.height))
 
         numEdges = 1
 
         let shapeCenter = shape.center
         edgeMidpoints = [
-            VertexCoord(x: Float(shapeCenter.x), y: Float(shapeCenter.y))
+            VertexCoord(x: Float(shapeCenter.x), y: Float(shapeCenter.y)),
         ]
 
         let dev = lattice.module.dev
@@ -45,7 +45,7 @@ struct NetForceRenderer {
         let netDirection = netForce.unit()
         let netMag = 0.5 * netForce.magnitude()
         let edgeNormals = [
-            VertexCoord(x: Float(netDirection.x), y: Float(netDirection.y))
+            VertexCoord(x: Float(netDirection.x), y: Float(netDirection.y)),
         ]
         let edgeForces = [Float(netMag)]
 

@@ -26,10 +26,10 @@ struct TextureCompositor {
 
     init(
         module: MetalModule, imageSize: NSSize,
-        backgroundColor: SIMD4<Float>? = nil
-    ) throws {
+        backgroundColor: SIMD4<Float>? = nil) throws
+    {
         self.module = module
-        self.size = GPUImageSize(
+        size = GPUImageSize(
             width: UInt32(imageSize.width), height: UInt32(imageSize.height))
         self.backgroundColor = backgroundColor ?? [0.0, 0.0, 0.0, 1.0]
 
@@ -39,8 +39,8 @@ struct TextureCompositor {
         clearParamsBM = MetalBuffMgr<ClearParams>(device: module.dev)
         paramsBM = MetalBuffMgr<CompositeParams>(device: module.dev)
 
-        texture = Self.createTexture(dev: module.dev, size: self.size)
-        overlayTexture = Self.createTexture(dev: module.dev, size: self.size)
+        texture = Self.createTexture(dev: module.dev, size: size)
+        overlayTexture = Self.createTexture(dev: module.dev, size: size)
     }
 
     func composite(textures: [MTLTexture], alpha: Float) {
@@ -71,8 +71,8 @@ struct TextureCompositor {
 
     private func clear(
         cmdBuff: MTLCommandBuffer, texture destTexture: MTLTexture,
-        color: SIMD4<Float>
-    ) {
+        color: SIMD4<Float>)
+    {
         guard let encoder = cmdBuff.makeComputeCommandEncoder() else {
             fatalError("Could not create clear encoder")
         }
@@ -100,8 +100,8 @@ struct TextureCompositor {
     }
 
     private func compositeTextures(
-        cmdBuff: MTLCommandBuffer, background: MTLTexture, overlay: MTLTexture
-    ) {
+        cmdBuff: MTLCommandBuffer, background: MTLTexture, overlay: MTLTexture)
+    {
         guard background.width == overlay.width else {
             fatalError("Composite texture widths do not match: \(background.width) != \(overlay.width)")
         }

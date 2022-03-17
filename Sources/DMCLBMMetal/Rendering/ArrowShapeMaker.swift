@@ -71,8 +71,8 @@ struct ArrowShapeMaker {
     // Get a parallel array for unitArrow indicating which
     // vertices are tail endpoints.
     private static func unitArrowTailMask(
-        fromTriangles: [VertexCoord], xTail: Double
-    ) -> [Float] {
+        fromTriangles: [VertexCoord], xTail: Double) -> [Float]
+    {
         let result: [Float] = fromTriangles.map { vc in
             (vc.x >= Float(xTail)) ? Float(1.0) : Float(0.0)
         }

@@ -21,12 +21,11 @@ public class MetalModule {
         }
 
         self.dev = dev
-        self.cmdQ = queue
-        self.lib = try Self.loadMetal(device: dev)
+        cmdQ = queue
+        lib = try Self.loadMetal(device: dev)
     }
 
-    private static func loadMetal(device: MTLDevice) throws -> MTLLibrary
-    {
+    private static func loadMetal(device: MTLDevice) throws -> MTLLibrary {
         if let defaultLib = device.makeDefaultLibrary() {
             return defaultLib
         }

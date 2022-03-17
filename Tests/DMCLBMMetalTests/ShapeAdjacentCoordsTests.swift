@@ -12,8 +12,7 @@ final class ShapeAdjacentCoordsTests: XCTestCase {
 
     private func foilShape() -> Polygon {
         AirFoil(
-            x: 2.0, y: 10.0, width: 100.0, alphaRad: 4.0 * .pi / 180.0
-        ).shape
+            x: 2.0, y: 10.0, width: 100.0, alphaRad: 4.0 * .pi / 180.0).shape
     }
 
     func testInit() throws {
@@ -59,8 +58,8 @@ final class ShapeAdjacentCoordsTests: XCTestCase {
                 }
                 inShape.append(row)
             }
-            self.x = xOrigin
-            self.y = yOrigin
+            x = xOrigin
+            y = yOrigin
             self.width = width
             self.height = height
             self.inShape = inShape
@@ -140,8 +139,7 @@ final class ShapeAdjacentCoordsTests: XCTestCase {
         }
     }
 
-    private func abuts(mask: ShapeMask, edgeIndex: Int, x: Int, y: Int) -> Bool
-    {
+    private func abuts(mask: ShapeMask, edgeIndex: Int, x: Int, y: Int) -> Bool {
         // Adjacency test is complicated by rounding to nearest integer coordinates.
 
         // Verify that the point lies outside the mask.

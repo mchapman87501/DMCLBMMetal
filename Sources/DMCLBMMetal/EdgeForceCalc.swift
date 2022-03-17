@@ -10,7 +10,7 @@ public class EdgeForceCalc {
     // EdgeSitesInfo identifies the contiguous entries in that index that
     // are adjacent to a single edge of the polygon.
     private struct EdgeSitesInfo {
-        let edgeLength: Float  // The length of this edge in lattice units
+        let edgeLength: Float // The length of this edge in lattice units
         let startIndex: UInt32 // Index of the first entry for this edge
         let numEntries: UInt32 // Number of consecutive entries belonging to this edge
     }

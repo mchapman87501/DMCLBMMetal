@@ -26,15 +26,14 @@ struct FoilRenderer {
 
         let strokeColor: MetalColor = [0.0, 0.0, 0.0, 1.0]
         renderShape(
-            context: context, shape: hull, using: .lineStrip, color: strokeColor
-        )
+            context: context, shape: hull, using: .lineStrip, color: strokeColor)
     }
 
     private func renderShape(
         context: RenderContext,
         shape: [VertexCoord],
-        using type: MTLPrimitiveType, color shapeColor: MetalColor
-    ) {
+        using type: MTLPrimitiveType, color shapeColor: MetalColor)
+    {
         let encoder = context.newEncoder()
 
         var worldSize = WorldSize(

@@ -41,22 +41,22 @@ public class Lattice {
 
     public init(
         fields: FieldData, width: Int, height: Int, siteTypes: SiteTypeData,
-        tracers: Tracers, omega: Double
-    ) {
+        tracers: Tracers, omega: Double)
+    {
         self.width = width
         self.height = height
         self.numSites = width * height
-        self.numFields = width * height * fieldsPerSite
+        numFields = width * height * fieldsPerSite
 
-        guard fields.count == self.numFields else {
+        guard fields.count == numFields else {
             fatalError("Number of fields does not match lattice dimensions.")
         }
-        self.module = try! MetalModule()
-        collidePS = try! self.module.pipelineState(name: "collide")
-        streamPS = try! self.module.pipelineState(name: "stream")
-        moveTracerPS = try! self.module.pipelineState(name: "move_tracers")
+        module = try! MetalModule()
+        collidePS = try! module.pipelineState(name: "collide")
+        streamPS = try! module.pipelineState(name: "stream")
+        moveTracerPS = try! module.pipelineState(name: "move_tracers")
 
-        let dev = self.module.dev
+        let dev = module.dev
         collideParamsBM = MetalBuffMgr<CollideParams>(device: dev)
         streamParamsBM = MetalBuffMgr<StreamParams>(device: dev)
 
@@ -127,7 +127,7 @@ public class Lattice {
 
         // Do one item of work for each site,
         // while passing a buffer of all fields.
-        let numSites = self.numFields / fieldsPerSite
+        let numSites = numFields / fieldsPerSite
         let gridSize = MTLSizeMake(numSites, 1, 1)
 
         let tgSize = min(numSites, ps.maxTotalThreadsPerThreadgroup)

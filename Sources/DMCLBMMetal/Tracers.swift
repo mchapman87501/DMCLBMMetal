@@ -19,8 +19,8 @@ public class Tracers {
 
     public init(
         shape: DMC2D.Polygon,
-        latticeWidth width: Int, latticeHeight height: Int, spacing: Int
-    ) {
+        latticeWidth width: Int, latticeHeight height: Int, spacing: Int)
+    {
         self.width = width
         self.height = height
         self.spacing = spacing
@@ -48,8 +48,8 @@ public class Tracers {
 
     // Alternate constructor for unit testing - no foil
     public init(
-        latticeWidth width: Int, latticeHeight height: Int, spacing: Int
-    ) {
+        latticeWidth width: Int, latticeHeight height: Int, spacing: Int)
+    {
         self.width = width
         self.height = height
         self.spacing = spacing

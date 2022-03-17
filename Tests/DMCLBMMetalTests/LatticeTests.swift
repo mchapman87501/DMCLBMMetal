@@ -1,12 +1,12 @@
-import XCTest
 @testable import DMCLBMMetal
+import XCTest
 
 extension Lattice {
     func extractFields(firstField: Bool) -> FieldData {
         // Which buffer holds the most recent streaming results?
         // `useFields1' is toggled after each argument sequence.
         // If it is true, then the last streaming step used fields1, etc.
-        return firstField ? fields1BM.values() : fields2BM.values()
+        firstField ? fields1BM.values() : fields2BM.values()
     }
 
     func extractProps() -> [SiteProps] {
@@ -172,7 +172,7 @@ final class LatticeTests: XCTestCase {
         XCTAssertEqual(txExpected, txActual, accuracy: 1.0e-3)
         XCTAssertEqual(tyExpected, tyActual, accuracy: 1.0e-3)
     }
-    
+
     func testStepOneFrame() throws {
         // The approach: Create a lattice whose field values are a function of their
         // streaming direction.
@@ -184,7 +184,7 @@ final class LatticeTests: XCTestCase {
         let siteTypes = SiteTypeData(repeating: .fluid, count: 4)
 
         let tracers = Tracers(latticeWidth: 2, latticeHeight: 2, spacing: 1)
-        
+
         let lbm = Lattice(
             fields: fields0, width: 2, height: 2, siteTypes: siteTypes,
             tracers: tracers, omega: 9.1)

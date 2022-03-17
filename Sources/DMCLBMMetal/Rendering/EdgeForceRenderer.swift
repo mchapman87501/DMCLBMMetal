@@ -26,10 +26,10 @@ struct EdgeForceRenderer {
 
     init(
         lattice: Lattice, shape: DMC2D.Polygon,
-        edgeForceBM: MetalBuffMgr<Float>
-    ) {
+        edgeForceBM: MetalBuffMgr<Float>)
+    {
         self.lattice = lattice
-        self.worldSize = WorldSize(
+        worldSize = WorldSize(
             x: Float(lattice.width), y: Float(lattice.height))
         numEdges = shape.edges.count
 

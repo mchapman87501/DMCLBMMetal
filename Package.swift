@@ -7,7 +7,7 @@ let package = Package(
     name: "DMCLBMMetalSim",
     // https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html
     platforms: [
-        .macOS(.v11)
+        .macOS(.v11),
     ],
     products: [
         .library(
@@ -50,10 +50,8 @@ let package = Package(
                 .process("Resources/shared_defs"),
                 .process("Resources/compute.metal"),
                 .process("Resources/render.metal"),
-            ]
-            ),
+            ]),
         .testTarget(
             name: "DMCLBMMetalTests",
             dependencies: ["DMCLBMMetal"]),
-    ]
-)
+    ])
